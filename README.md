@@ -1,6 +1,6 @@
 # legalai
 
-A new Flutter project.
+LegalAI app built with flutter.
 
 ## Getting Started
 
