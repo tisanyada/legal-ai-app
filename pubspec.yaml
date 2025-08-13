@@ -60,6 +60,12 @@ dependencies:
     permission_handler: ^11.4.0
     youtube_player_iframe: ^5.2.1
     flutter_markdown: ^0.6.18
+    auth_sdk:
+        path: lib/data/infra_sdk/auth
+    account_sdk:
+        path: lib/data/infra_sdk/account
+    # legal_sdk:
+    #     path: lib/data/infra_sdk/legal
 
 dev_dependencies:
     flutter_test:

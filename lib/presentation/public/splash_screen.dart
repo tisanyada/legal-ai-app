@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
         null) {
       ServiceRegistry.commonRepository.currentScreenIndex.value = 0;
 
-      // Get.toNamed(AppRoutes.dashboardRoute);
+      Get.toNamed(AppRoutes.dashboardRoute);
     } else {
       Get.toNamed(AppRoutes.onboardingRoute);
     }
