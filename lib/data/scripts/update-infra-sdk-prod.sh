@@ -18,14 +18,14 @@ echo "...[REBUILDING-ACCOUNT-SDK-SUCCESS]"
 echo " "
 
 
-# echo "...[REBUILDING-LEGAL-SDK-PROCESSING]"
-# echo " "
+echo "...[REBUILDING-LEGAL-SDK-PROCESSING]"
+echo " "
 
-# openapi-generator generate -i http://localhost:3000/docs/legal-service-json -g dart-dio -o ../infra_sdk/legal --enable-post-process-file --additional-properties=pubName=legal_sdk,pubLibrary=legal_api.api
+openapi-generator generate -i http://localhost:3000/docs/legal-service-json -g dart-dio -o ../infra_sdk/legal --enable-post-process-file --additional-properties=pubName=legal_sdk,pubLibrary=legal_api.api
 
-# echo " "
-# echo "...[REBUILDING-LEGAL-SDK-SUCCESS]"
-# echo " "
+echo " "
+echo "...[REBUILDING-LEGAL-SDK-SUCCESS]"
+echo " "
 
 sh update-infra-sdk-files.sh
 

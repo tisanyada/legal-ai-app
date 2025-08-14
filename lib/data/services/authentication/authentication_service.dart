@@ -30,10 +30,7 @@ class AuthenticationService extends GetxController {
   ///     email?: string,
   ///     password?: string,
   /// }
-  Future<void> signInService(
-    SigninDTO formData, {
-    bool resendOtp = false,
-  }) async {
+  Future<void> signInService(SigninDTO formData) async {
     try {
       log("[SIGNIN-PENDING]");
 
@@ -45,15 +42,13 @@ class AuthenticationService extends GetxController {
 
       AuthApi authApi = ServiceRegistry.authSdk.getAuthApi();
 
-      Dio.Response response = await authApi
-          .authControllerSignIn(
-            signinDTO: formData,
-          )
-          .timeout(const Duration(seconds: 30));
-
-      SigninResponsePayload data = response.data;
+      Dio.Response response = await authApi.authControllerSignIn(
+        signinDTO: formData,
+      );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
+        SigninResponsePayload data = response.data;
+
         log('[SIGNIN-RESPONSE] :: $data');
 
         isSignInProcessing.value = false;

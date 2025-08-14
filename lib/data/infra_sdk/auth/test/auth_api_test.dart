@@ -12,7 +12,7 @@ void main() {
       // TODO
     });
 
-    //Future<SignupResponsePayload> authControllerSignUp(CreateAccountDTO createAccountDTO) async
+    //Future<SigninResponsePayload> authControllerSignUp(CreateAccountDTO createAccountDTO) async
     test('test authControllerSignUp', () async {
       // TODO
     });

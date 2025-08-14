@@ -5,6 +5,7 @@ import 'package:legalai/components/text/body_text.dart';
 import 'package:legalai/components/text/title_text.dart';
 import 'package:legalai/components/appbar/default_appbar.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:legalai/data/services/authentication/auth_middlewares.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -265,7 +266,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             // Sign Out Button
             InkWell(
-              onTap: () {},
+              onTap: () {
+                userLogoutHandler(context: context);
+              },
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Row(

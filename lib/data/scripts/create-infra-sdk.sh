@@ -19,7 +19,7 @@ mkdir ../infra_sdk
 
 cd ../infra_sdk 
 
-mkdir auth account
+mkdir auth account legal
 
 # cd ../
 
@@ -48,14 +48,14 @@ echo "...[GENERATE-ACCOUNT-SDK-SUCCESS]"
 echo " "
 
 
-# echo " "
-# echo "...[GENERATE-LEGAL-SDK-PROCESSING]"
-# echo " "
-# openapi-generator generate -i http://localhost:3000/docs/legal-service-json -g dart-dio -o ../infra_sdk/legal --enable-post-process-file --additional-properties=pubName=legal_sdk,pubLibrary=legal_api.api
+echo " "
+echo "...[GENERATE-LEGAL-SDK-PROCESSING]"
+echo " "
+openapi-generator generate -i http://localhost:3000/docs/legal-service-json -g dart-dio -o ../infra_sdk/legal --enable-post-process-file --additional-properties=pubName=legal_sdk,pubLibrary=legal_api.api
 
-# echo " "
-# echo "...[GENERATE-LEGAL-SDK-SUCCESS]"
-# echo " "
+echo " "
+echo "...[GENERATE-LEGAL-SDK-SUCCESS]"
+echo " "
 
 echo " "
 echo "...[GENERATE-SDKS-SUCCESSFUL]"

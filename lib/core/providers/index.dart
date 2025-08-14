@@ -5,6 +5,8 @@ import 'package:account_sdk/account_sdk.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:legalai/data/infra_sdk/legal/lib/legal_sdk.dart';
+import 'package:legalai/data/services/legal/legal_service.dart';
 import 'package:legalai/data/repositories/user_repository.dart';
 import 'package:legalai/data/repositories/common_repository.dart';
 import 'package:legalai/data/services/account/account_service.dart';
@@ -26,6 +28,8 @@ class ServiceRegistry {
 
   static AccountService accountService = Get.find<AccountService>();
 
+  static LegalService legalService = Get.find<LegalService>();
+
   static AuthenticationService authenticationService =
       Get.find<AuthenticationService>();
 
@@ -36,6 +40,12 @@ class ServiceRegistry {
   );
 
   static AccountSdk accountSdk = AccountSdk(
+    dio: dioBaseOptions,
+    basePathOverride: dotenv.env['INFRA_BASE_URL']!,
+    // basePathOverride: dotenv.env['INFRA_PROD_URL']!,
+  );
+
+  static LegalSdk legalSdk = LegalSdk(
     dio: dioBaseOptions,
     basePathOverride: dotenv.env['INFRA_BASE_URL']!,
     // basePathOverride: dotenv.env['INFRA_PROD_URL']!,

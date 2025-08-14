@@ -49,9 +49,11 @@ class _LoginScreenState extends State<LoginScreen> {
         message: 'Password is incorrect',
       );
     } else {
-      SigninDTO formData = SigninDTO((instance) => instance
-        ..email = emailController.text.trim()
-        ..password = passwordController.text.trim());
+      SigninDTO formData = SigninDTO(
+        (instance) => instance
+          ..email = emailController.text.trim()
+          ..password = passwordController.text.trim(),
+      );
 
       FocusScope.of(context).unfocus();
 

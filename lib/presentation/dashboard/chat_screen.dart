@@ -6,6 +6,7 @@ import 'package:legalai/components/text/body_text.dart';
 import 'package:legalai/components/text/subtitle_text.dart';
 import 'package:legalai/components/appbar/default_appbar.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+import 'package:legalai/core/providers/index.dart';
 
 class ChatMessage {
   final String text;
@@ -70,14 +71,28 @@ class _ChatScreenState extends State<ChatScreen> {
     // Simulate AI response after a delay
     await Future.delayed(const Duration(seconds: 2));
 
+    String response =
+        await ServiceRegistry.legalService.aIChatCompletionService(
+      query: text,
+      file: null,
+    );
+
+    if (response.isEmpty) {
+      setState(() {
+        _messages.add(ChatMessage(
+          isUser: false,
+          text: 'Sorry, I couldn\'t generate a response',
+          timestamp: DateTime.now(),
+        ));
+        _isGenerating = false;
+      });
+      return;
+    }
+
     setState(() {
       _messages.add(ChatMessage(
-        text: "I'll help you with that. Let me analyze your question...\n\n" +
-            "Here's what I found:\n" +
-            "1. Your question is about legal matters\n" +
-            "2. I'll provide relevant information\n" +
-            "3. Let me know if you need any clarification",
         isUser: false,
+        text: response,
         timestamp: DateTime.now(),
       ));
       _isGenerating = false;
@@ -147,20 +162,72 @@ class _ChatScreenState extends State<ChatScreen> {
                   else
                     MarkdownBody(
                       data: message.text,
+                      onTapLink: (text, href, title) {
+                        if (href != null) {
+                          // Handle link taps here
+                          print('Tapped link: $href');
+                        }
+                      },
                       styleSheet: MarkdownStyleSheet(
                         p: const TextStyle(
-                          color: Colors.black87,
+                          color: Colors.black,
                           fontSize: 14,
                           height: 1.5,
                         ),
                         strong: const TextStyle(
-                          color: Colors.black87,
+                          color: Colors.black,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                         ),
-                        listBullet: const TextStyle(
-                          color: Colors.black87,
+                        em: TextStyle(
+                          color: Colors.black.withOpacity(0.9),
                           fontSize: 14,
+                          fontStyle: FontStyle.italic,
+                        ),
+                        listBullet: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        blockquote: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 14,
+                          height: 1.5,
+                        ),
+                        blockquoteDecoration: BoxDecoration(
+                          border: Border(
+                            left: BorderSide(
+                              color: AppColors.primaryColor.withOpacity(0.3),
+                              width: 4,
+                            ),
+                          ),
+                        ),
+                        code: TextStyle(
+                          color: AppColors.primaryColor,
+                          fontSize: 14,
+                          backgroundColor: Colors.grey[100],
+                        ),
+                        codeblockDecoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        h1: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        h2: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        h3: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        a: const TextStyle(
+                          color: AppColors.primaryColor,
+                          decoration: TextDecoration.underline,
                         ),
                       ),
                     ),

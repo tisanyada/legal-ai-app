@@ -64,8 +64,8 @@ dependencies:
         path: lib/data/infra_sdk/auth
     account_sdk:
         path: lib/data/infra_sdk/account
-    # legal_sdk:
-    #     path: lib/data/infra_sdk/legal
+    legal_sdk:
+        path: lib/data/infra_sdk/legal
 
 dev_dependencies:
     flutter_test:

@@ -9,8 +9,8 @@ class UserRepository extends GetxController {
       ..firstName = ''
       ..lastName = ''
       ..email = ''
+      ..status = AccountSdk.AccountInfoStatusEnum.active
       ..avatar =
-          'https://medexer.s3.eu-north-1.amazonaws.com/avatars/avatar.png'
-      ..status = AccountSdk.AccountInfoStatusEnum.active,
+          'https://medexer.s3.eu-north-1.amazonaws.com/avatars/avatar.png',
   ).obs;
 }
